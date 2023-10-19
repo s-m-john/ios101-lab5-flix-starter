@@ -11,7 +11,8 @@ class ViewController: UIViewController {
 
 
     // TODO: Add table view outlet
-
+    @IBOutlet weak var tableView: UITableView!
+    
 
     // TODO: Add property to store fetched movies array
 
