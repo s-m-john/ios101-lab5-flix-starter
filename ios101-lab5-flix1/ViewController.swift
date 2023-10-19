@@ -10,8 +10,10 @@ import Nuke
 class ViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        print("🍏 numberOfRowsInSection called with movies count: \(movies.count)")
+        
         // Return the number of rows for the table.
-        return 50
+        return movies.count
 
     }
     
@@ -19,10 +21,16 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         // Create the cell
         let cell = UITableViewCell()
+        
+        // Get the movie-associated table view row
+        let movie = movies[indexPath.row]
+
 
         // Configure the cell (i.e. update UI elements like labels, image views, etc.)
         // Get the row where the cell will be placed using the `row` property on the passed in `indexPath` (i.e., `indexPath.row`)
-        cell.textLabel?.text = "Row \(indexPath.row)"
+        cell.textLabel?.text = movie.title
+        
+        print("🍏 cellForRowAt called for row: \(indexPath.row)")
 
         // Return the cell for use in the respective table view row
         return cell
@@ -36,7 +44,10 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     // TODO: Add property to store fetched movies array
 
-
+    // A property to store the movies we fetch.
+    // Providing a default value of an empty array (i.e., `[]`) avoids having to deal with optionals.
+    private var movies: [Movie] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,6 +100,11 @@ class ViewController: UIViewController, UITableViewDataSource {
                 // Run any code that will update UI on the main thread.
                 DispatchQueue.main.async { [weak self] in
 
+                    // Update the movies property so we can access movie data anywhere in the view controller.
+                    self?.movies = movies
+                    self?.tableView.reloadData()
+                    
+                    print("🍏 Fetched and stored \(movies.count) movies")
                     // We have movies! Do something with them!
                     print("✅ SUCCESS!!! Fetched \(movies.count) movies")
 
