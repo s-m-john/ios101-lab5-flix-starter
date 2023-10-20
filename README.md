@@ -21,3 +21,9 @@ By the end of this lab you will be able to...
 1. Fetch movie data from The Movie DB API
 1. Display movies scrolling list of movies fetched from the TMDB API.
    1. Each movie in the list should display the movie’s poster image, title and description
+
+
+### Walthrough
+
+https://imgur.com/a/x7pz0D0.gif
+
